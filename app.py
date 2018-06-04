@@ -10,14 +10,15 @@ def translate(word):
 	elif(word.upper() in data):
 		return data[word.upper()]
 	elif (len(get_close_matches(word, data.keys())) > 0):
-		response = raw_input("Did you rather mean %s ?" % get_close_matches(word, data.keys())[0] + " Enter Y or N: ")
-		response = response.lower()
-		if (response == "y"):
-			return data[get_close_matches(word, data.keys())[0]]
-		elif (response == "n"):
-			return "Non-existent word. Please check your input"
+		print("Did you rather mean any of the follwing? Enter the number [1 - 3] corresponding to your choice.")
+		for x in range(0, 3):
+			print(str(x+1) + " - " + str(get_close_matches(word, data.keys())[x]))
+		response = input("Response - ")
+		response = response - 1
+		if (response in range(0, 3)):
+			return data[get_close_matches(word, data.keys())[response]]
 		else:
-			return "Incorrect response"
+			return "Non-existent word. Please check your input"
 	else:
 		return "Non-existent word. Please check your input"
 
