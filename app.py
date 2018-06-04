@@ -22,7 +22,7 @@ def translate(word):
 	else:
 		return "Non-existent word. Please check your input"
 
-word = raw_input("Enter word: ")
+word = input("Enter word: ")
 
 result = translate(word)
 
