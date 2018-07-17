@@ -13,12 +13,16 @@ def translate(word):
 		print("Did you rather mean any of the follwing? Enter the number [1 - 3] corresponding to your choice.")
 		for x in range(0, 3):
 			print(str(x+1) + " - " + str(get_close_matches(word, data.keys())[x]))
-		response = int(input("Response - "))
-		response = response - 1
-		if (response in range(0, 3)):
-			return data[get_close_matches(word, data.keys())[response]]
-		else:
-			return "Non-existent word. Please check your input"
+		response = input("Response - ")
+		try:
+			response = int(response)
+			response = response - 1
+			if (response in range(0, 3)):
+				return data[get_close_matches(word, data.keys())[response]]
+			else:
+				return "Non-existent word. Please check your input"
+		except Exception:
+			return "Incorrect response. Please check your input"
 	else:
 		return "Non-existent word. Please check your input"
 
@@ -26,9 +30,9 @@ word = input("Enter word: ")
 
 result = translate(word)
 
-print("\nMeaning(s):")
 if type(result) == str:
 	print(result)
 else:
+	print("\nMeaning(s):")
 	for i in result:
 		print(i)
